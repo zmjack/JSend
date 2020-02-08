@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Frontend</RootNamespace>
+    <Version>0.0.1</Version>
+    <Authors>zmjack</Authors>
+    <Description>JSend DotNet definition. JSend is a specification that lays down some rules for how JSON responses from web servers should be formatted.</Description>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageLicenseExpression></PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/zmjack/JSend.git</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/zmjack/JSend.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>JSend Json</PackageTags>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>

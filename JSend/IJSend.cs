@@ -1,5 +1,5 @@
 ﻿
-namespace Frontend
+namespace Ajax
 {
 #pragma warning disable IDE1006    
     public interface IJSend

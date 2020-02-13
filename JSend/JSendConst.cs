@@ -1,5 +1,5 @@
 ﻿
-namespace Frontend
+namespace Ajax
 {
     public static class JSendConst
     {

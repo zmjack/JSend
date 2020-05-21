@@ -15,7 +15,7 @@ namespace Ajax
         /// <summary>
         /// There was a problem with the data submitted, or some pre-condition of the API call wasn't satisfied.
         /// </summary>
-        public class Error<TData> : IJSend
+        public class Error<TData> : IJSend<TData>
         {
             public Error() { }
             public Error(string message)
@@ -30,7 +30,6 @@ namespace Ajax
             }
 
             public string status => JSendConst.ERROR_STATUS;
-            object IJSend.data { get; set; }
 
             /// <summary>
             /// Required Key:
@@ -49,11 +48,7 @@ namespace Ajax
             ///     A generic container for any other information about the error,
             ///         i.e.the conditions that caused the error, stack traces, etc.
             /// </summary>
-            public TData data
-            {
-                get => (TData)(this as IJSend).data;
-                set => (this as IJSend).data = value;
-            }
+            public TData data { get; set; }
 
             public static implicit operator JSend<TData>(Error<TData> @this) => JSend<TData>.Parse(@this);
         }

@@ -14,7 +14,7 @@ namespace Ajax
         /// <summary>
         /// All went well, and (usually) some data was returned.
         /// </summary>
-        public class Success<TData> : IJSend
+        public class Success<TData> : IJSend<TData>
         {
             public Success() { }
             public Success(TData data)
@@ -23,20 +23,15 @@ namespace Ajax
             }
 
             public string status => JSendConst.SUCCESS_STATUS;
-            dynamic IJSend.data { get; set; }
-            string IJSend.code { get; set; }
-            string IJSend.message { get; set; }
+            string IJSend<TData>.code { get; set; }
+            string IJSend<TData>.message { get; set; }
 
             /// <summary>
             /// Required Key:
             ///     Acts as the wrapper for any data returned by the API call.
             ///     If the call returns no data, data should be set to null.
             /// </summary>
-            public TData data
-            {
-                get => (TData)(this as IJSend).data;
-                set => (this as IJSend).data = value;
-            }
+            public TData data { get; set; }
 
             public static implicit operator JSend<TData>(Success<TData> @this) => JSend<TData>.Parse(@this);
         }

@@ -4,7 +4,7 @@ namespace Ajax
 #pragma warning disable IDE1006
 
     // Refer: http://labs.omniti.com/labs/jsend
-    public partial class JSend : IJSend
+    public partial class JSend : IJSend<object>
     {
         public string status { get; set; }
         public object data { get; set; }
@@ -12,7 +12,7 @@ namespace Ajax
         public string code { get; set; }
         public string message { get; set; }
 
-        public static JSend Parse(IJSend jSend)
+        public static JSend Parse(IJSend<object> jSend)
         {
             return new JSend
             {
@@ -32,12 +32,12 @@ namespace Ajax
             set => base.data = value;
         }
 
-        public static new JSend<TData> Parse(IJSend jSend)
+        public static new JSend<TData> Parse(IJSend<TData> jSend)
         {
             return new JSend<TData>
             {
                 code = jSend.code,
-                data = (TData)jSend.data,
+                data = jSend.data,
                 message = jSend.message,
                 status = jSend.status,
             };

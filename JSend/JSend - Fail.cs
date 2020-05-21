@@ -14,7 +14,7 @@ namespace Ajax
         /// <summary>
         /// There was a problem with the data submitted, or some pre-condition of the API call wasn't satisfied.
         /// </summary>
-        public class Fail<TData> : IJSend
+        public class Fail<TData> : IJSend<TData>
         {
             public Fail() { }
             public Fail(TData data)
@@ -23,9 +23,8 @@ namespace Ajax
             }
 
             public string status => JSendConst.FAIL_STATUS;
-            dynamic IJSend.data { get; set; }
-            string IJSend.code { get; set; }
-            string IJSend.message { get; set; }
+            string IJSend<TData>.code { get; set; }
+            string IJSend<TData>.message { get; set; }
 
             /// <summary>
             /// Required Key:
@@ -33,11 +32,7 @@ namespace Ajax
             ///     If the reasons for failure correspond to POST values,
             ///     the response object's keys SHOULD correspond to those POST values.
             /// </summary>
-            public TData data
-            {
-                get => (TData)(this as IJSend).data;
-                set => (this as IJSend).data = value;
-            }
+            public TData data { get; set; }
 
             public static implicit operator JSend<TData>(Fail<TData> @this) => JSend<TData>.Parse(@this);
         }

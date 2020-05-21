@@ -1,7 +1,7 @@
 ﻿
 namespace Ajax
 {
-#pragma warning disable IDE1006    
+#pragma warning disable IDE1006
     public interface IJSend<TData>
     {
         string status { get; }

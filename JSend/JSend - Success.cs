@@ -7,7 +7,7 @@ namespace Ajax
     {
         public static class Success
         {
-            public static Success<string> Create() => new Success<string>();
+            public static Success<object> Create() => new Success<object>();
             public static Success<TData> Create<TData>(TData data) => new Success<TData>(data);
         }
 
@@ -34,6 +34,7 @@ namespace Ajax
             public TData data { get; set; }
 
             public static implicit operator JSend<TData>(Success<TData> @this) => JSend<TData>.Parse(@this);
+            public static implicit operator JSend(Success<TData> @this) => Parse(@this);
         }
 
     }

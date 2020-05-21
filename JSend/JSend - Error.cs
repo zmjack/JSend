@@ -7,8 +7,8 @@ namespace Ajax
     {
         public static class Error
         {
-            public static Error<string> Create() => new Error<string>();
-            public static Error<string> Create(string message) => new Error<string>(message);
+            public static Error<object> Create() => new Error<object>();
+            public static Error<object> Create(string message) => new Error<object>(message);
             public static Error<TData> Create<TData>(string message, string code, TData data) => new Error<TData>(message, code, data);
         }
 
@@ -51,6 +51,7 @@ namespace Ajax
             public TData data { get; set; }
 
             public static implicit operator JSend<TData>(Error<TData> @this) => JSend<TData>.Parse(@this);
+            public static implicit operator JSend(Error<TData> @this) => JSend.Parse(@this);
         }
 
     }

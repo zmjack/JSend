@@ -12,7 +12,7 @@ namespace Ajax
         public string code { get; set; }
         public string message { get; set; }
 
-        public static JSend Parse(IJSend<object> jSend)
+        public static JSend Parse<TData>(IJSend<TData> jSend)
         {
             return new JSend
             {
@@ -24,13 +24,13 @@ namespace Ajax
         }
     }
 
-    public partial class JSend<TData> : JSend
+    public class JSend<TData> : IJSend<TData>
     {
-        public new TData data
-        {
-            get => (TData)base.data;
-            set => base.data = value;
-        }
+        public string status { get; set; }
+        public TData data { get; set; }
+
+        public string code { get; set; }
+        public string message { get; set; }
 
         public static new JSend<TData> Parse(IJSend<TData> jSend)
         {

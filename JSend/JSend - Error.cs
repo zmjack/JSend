@@ -8,9 +8,13 @@ namespace Ajax
         public static class Error
         {
             public static Error<object> Create() => new Error<object>();
+            public static Error<TData> Create<TData>(string message, string code, TData data) => new Error<TData>(message, code, data);
+
             public static Error<object> Create(string message) => new Error<object>(message);
             public static Error<object> Create(string message, string code) => new Error<object>(message, code);
-            public static Error<TData> Create<TData>(string message, string code, TData data) => new Error<TData>(message, code, data);
+
+            public static Error<TData> Create<TData>(string message) => new Error<TData>(message);
+            public static Error<TData> Create<TData>(string message, string code) => new Error<TData>(message, code);
         }
 
         /// <summary>

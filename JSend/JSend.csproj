@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>Ajax</RootNamespace>
-    <Version>0.6.0</Version>
+    <Version>0.7.0</Version>
     <Authors>zmjack</Authors>
     <Description>JSend DotNet definition. JSend is a specification that lays down some rules for how JSON responses from web servers should be formatted.</Description>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>

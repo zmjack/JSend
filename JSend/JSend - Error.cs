@@ -9,6 +9,7 @@ namespace Ajax
         {
             public static Error<object> Create() => new Error<object>();
             public static Error<object> Create(string message) => new Error<object>(message);
+            public static Error<object> Create(string message, string code) => new Error<object>(message, code);
             public static Error<TData> Create<TData>(string message, string code, TData data) => new Error<TData>(message, code, data);
         }
 
@@ -21,6 +22,11 @@ namespace Ajax
             public Error(string message)
             {
                 this.message = message;
+            }
+            public Error(string message, string code)
+            {
+                this.message = message;
+                this.code = code;
             }
             public Error(string message, string code, TData data)
             {

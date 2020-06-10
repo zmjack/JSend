@@ -34,6 +34,11 @@ namespace Ajax
             /// </summary>
             public TData data { get; set; }
 
+            public override string ToString()
+            {
+                return $"{{ {nameof(status)}: {status}, {nameof(data)}: {data} }}";
+            }
+
             public static implicit operator JSend<TData>(Fail<TData> @this) => JSend<TData>.Parse(@this);
             public static implicit operator JSend(Fail<TData> @this) => Parse(@this);
         }

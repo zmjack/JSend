@@ -12,6 +12,11 @@ namespace Ajax
         public string code { get; set; }
         public string message { get; set; }
 
+        public override string ToString()
+        {
+            return $"{{ {nameof(status)}: {status}, {nameof(data)}: {data}, {nameof(code)}: {code}, {nameof(message)}: {message} }}";
+        }
+
         public static JSend Parse<TData>(IJSend<TData> jSend)
         {
             return new JSend
@@ -32,7 +37,12 @@ namespace Ajax
         public string code { get; set; }
         public string message { get; set; }
 
-        public static new JSend<TData> Parse(IJSend<TData> jSend)
+        public override string ToString()
+        {
+            return $"{{ {nameof(status)}: {status}, {nameof(data)}: {data}, {nameof(code)}: {code}, {nameof(message)}: {message} }}";
+        }
+
+        public static JSend<TData> Parse(IJSend<TData> jSend)
         {
             return new JSend<TData>
             {

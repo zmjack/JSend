@@ -14,7 +14,11 @@ namespace Ajax
 
         public override string ToString()
         {
-            return $"{{ {nameof(status)}: {status}, {nameof(data)}: {data}, {nameof(code)}: {code}, {nameof(message)}: {message} }}";
+            var _status = status.Replace("\"", "\\\"");
+            var _data = data.ToString().Replace("\"", "\\\"");
+            var _code = code.Replace("\"", "\\\"");
+            var _message = message.ToString().Replace("\"", "\\\"");
+            return $@"{{ ""{nameof(status)}"": ""{_status}"", ""{nameof(data)}"": ""{_data}"", ""{nameof(code)}"": ""{_code}"", ""{nameof(message)}"": ""{_message}"" }}";
         }
 
         public static JSend Parse<TData>(IJSend<TData> jSend)

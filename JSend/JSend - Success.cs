@@ -35,7 +35,9 @@ namespace Ajax
 
             public override string ToString()
             {
-                return $"{{ {nameof(status)}: {status}, {nameof(data)}: {data} }}";
+                var _status = status.Replace("\"", "\\\"");
+                var _data = data.ToString().Replace("\"", "\\\"");
+                return $@"{{ ""{nameof(status)}"": ""{_status}"", ""{nameof(data)}"": ""{_data}"" }}";
             }
 
             public static implicit operator JSend<TData>(Success<TData> @this) => JSend<TData>.Parse(@this);

@@ -36,8 +36,8 @@ namespace Ajax
 
             public override string ToString()
             {
-                var _status = status.Replace("\"", "\\\"");
-                var _data = data.ToString().Replace("\"", "\\\"");
+                var _status = status?.Replace("\"", "\\\"");
+                var _data = data?.ToString().Replace("\"", "\\\"");
                 return $@"{{ ""{nameof(status)}"": ""{_status}"", ""{nameof(data)}"": ""{_data}"" }}";
             }
 

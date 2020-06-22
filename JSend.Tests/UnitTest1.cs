@@ -24,6 +24,25 @@ namespace Ajax.Tests
 
             var fail = JSend.Fail.Create(new { ABC = "\"abc\"" });
             Assert.Equal("{ \"status\": \"fail\", \"data\": \"{ ABC = \\\"abc\\\" }\" }", fail.ToString());
+
+            var jsend = (JSend)error;
+            Assert.Equal("{ \"status\": \"error\", \"data\": \"{ ABC = \\\"abc\\\" }\", \"code\": \"#0\", \"message\": \"error message\" }", jsend.ToString());
+        }
+
+        [Fact]
+        public void NullTest()
+        {
+            var error = JSend.Error.Create(null, null, (JSend)null);
+            Assert.Equal("{ \"status\": \"error\", \"data\": \"\", \"code\": \"\", \"message\": \"\" }", error.ToString());
+
+            var success = JSend.Success.Create((JSend)null);
+            Assert.Equal("{ \"status\": \"success\", \"data\": \"\" }", success.ToString());
+
+            var fail = JSend.Fail.Create((JSend)null);
+            Assert.Equal("{ \"status\": \"fail\", \"data\": \"\" }", fail.ToString());
+
+            var jsend = (JSend)error;
+            Assert.Equal("{ \"status\": \"error\", \"data\": \"\", \"code\": \"\", \"message\": \"\" }", jsend.ToString());
         }
 
     }

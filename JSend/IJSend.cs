@@ -1,21 +1,22 @@
 ﻿
+using System.ComponentModel;
+
 namespace Ajax
 {
-#pragma warning disable IDE1006
-    public interface IJSend<TData>
+    public interface IJSend
     {
-        string status { get; }
-        TData data { get; set; }
+        string Status { get; }
+        object Data { get; set; }
 
-        string code { get; set; }
-        string message { get; set; }
+        string Code { get; set; }
+        string Message { get; set; }
     }
 
-    public static class IJSendExtension
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static class XIJSend
     {
-        public static bool IsSuccess<TData>(this IJSend<TData> @this) => @this.status == JSendConst.SUCCESS_STATUS;
-        public static bool IsFail<TData>(this IJSend<TData> @this) => @this.status == JSendConst.FAIL_STATUS;
-        public static bool IsError<TData>(this IJSend<TData> @this) => @this.status == JSendConst.ERROR_STATUS;
+        public static bool IsSuccess(this IJSend @this) => @this.Status == JSend.SUCCESS_STATUS;
+        public static bool IsFail(this IJSend @this) => @this.Status == JSend.FAIL_STATUS;
+        public static bool IsError(this IJSend @this) => @this.Status == JSend.ERROR_STATUS;
     }
-#pragma warning restore
 }

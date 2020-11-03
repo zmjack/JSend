@@ -1,61 +1,97 @@
 ﻿
 namespace Ajax
 {
-#pragma warning disable IDE1006
-
     // Refer: http://labs.omniti.com/labs/jsend
-    public partial class JSend : IJSend<object>
+    public class JSend : IJSend
     {
-        public string status { get; set; }
-        public object data { get; set; }
+        public const string SUCCESS_STATUS = "success";
+        public const string FAIL_STATUS = "fail";
+        public const string ERROR_STATUS = "error";
 
-        public string code { get; set; }
-        public string message { get; set; }
+        public static JSuccess Success() => new JSuccess();
+        public static JFail Fail() => new JFail();
+        public static JError Error(string message) => new JError { Message = message };
+        public static JError Error(string message, string code) => new JError { Code = code, Message = message };
 
-        public override string ToString()
-        {
-            var _status = status?.Replace("\"", "\\\"");
-            var _data = data?.ToString().Replace("\"", "\\\"");
-            var _code = code?.Replace("\"", "\\\"");
-            var _message = message?.ToString().Replace("\"", "\\\"");
-            return $@"{{ ""{nameof(status)}"": ""{_status}"", ""{nameof(data)}"": ""{_data}"", ""{nameof(code)}"": ""{_code}"", ""{nameof(message)}"": ""{_message}"" }}";
-        }
+        public static JSuccess<TData> Success<TData>(TData data) => new JSuccess<TData> { Data = data };
+        public static JFail<TData> Fail<TData>(TData data) => new JFail<TData> { Data = data };
+        public static JError<TData> Error<TData>(string message, string code, TData data) => new JError<TData> { Data = data, Code = code, Message = message };
 
-        public static JSend Parse<TData>(IJSend<TData> jSend)
+        public string Status { get; set; }
+        public object Data { get; set; }
+
+        public string Code { get; set; }
+        public string Message { get; set; }
+
+        public static implicit operator JSend(JSuccess jsend)
         {
             return new JSend
             {
-                code = jSend.code,
-                data = jSend.data,
-                message = jSend.message,
-                status = jSend.status,
+                Status = jsend.Status,
+                Data = jsend.Data,
+                Code = null,
+                Message = null,
+            };
+        }
+
+        public static implicit operator JSend(JFail jsend)
+        {
+            return new JSend
+            {
+                Status = jsend.Status,
+                Data = jsend.Data,
+                Code = null,
+                Message = null,
+            };
+        }
+
+        public static implicit operator JSend(JError jsend)
+        {
+            return new JSend
+            {
+                Status = jsend.Status,
+                Data = jsend.Data,
+                Code = jsend.Code,
+                Message = jsend.Message,
             };
         }
     }
 
-    public class JSend<TData> : IJSend<TData>
+    public class JSend<TData> : JSend
     {
-        public string status { get; set; }
-        public TData data { get; set; }
+        public new TData Data { get; set; }
 
-        public string code { get; set; }
-        public string message { get; set; }
-
-        public override string ToString()
-        {
-            return $"{{ {nameof(status)}: {status}, {nameof(data)}: {data}, {nameof(code)}: {code}, {nameof(message)}: {message} }}";
-        }
-
-        public static JSend<TData> Parse(IJSend<TData> jSend)
+        public static implicit operator JSend<TData>(JSuccess<TData> jsend)
         {
             return new JSend<TData>
             {
-                code = jSend.code,
-                data = jSend.data,
-                message = jSend.message,
-                status = jSend.status,
+                Status = jsend.Status,
+                Data = jsend.Data,
+                Code = null,
+                Message = null,
+            };
+        }
+
+        public static implicit operator JSend<TData>(JFail<TData> jsend)
+        {
+            return new JSend<TData>
+            {
+                Status = jsend.Status,
+                Data = jsend.Data,
+                Code = null,
+                Message = null,
+            };
+        }
+
+        public static implicit operator JSend<TData>(JError<TData> jsend)
+        {
+            return new JSend<TData>
+            {
+                Status = jsend.Status,
+                Data = jsend.Data,
+                Code = jsend.Code,
+                Message = jsend.Message,
             };
         }
     }
-#pragma warning restore
 }

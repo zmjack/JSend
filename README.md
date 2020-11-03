@@ -50,7 +50,7 @@ This version focuses on the implementation of the **.NET platform**.
 1. Install **JSend** library from **NuGet**:
 
 ```powershell
-dotnet add package JSend --version 0.9.5
+dotnet add package JSend
 ```
 
 <br/>

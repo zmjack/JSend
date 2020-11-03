@@ -50,7 +50,7 @@
 1. 从 **NuGet** 安装 **JSend**：
 
 ```powershell
-dotnet add package JSend --version 0.9.5
+dotnet add package JSend
 ```
 
 <br/>

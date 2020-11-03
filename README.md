@@ -66,25 +66,25 @@ Easy to understand, we provide three simply functions to create instance:
 For example, create an instance of **Success** (**JSuccess**)：
 
 ```c#
-JSend.Success();				// No data
-JSend.Success("OK");			// string data
-JSend.Success(new { ... });		// object data
+JSend.Success();                // No data
+JSend.Success("OK");            // string data
+JSend.Success(new { ... });     // object data
 ```
 
 instance of **Fail** (**JFail**):
 
 ```c#
-JSend.Fail();					// No data
-JSend.Fail("Oops");				// string data
-JSend.Success(new { ... });		// object data
+JSend.Fail();                   // No data
+JSend.Fail("Oops");             // string data
+JSend.Success(new { ... });     // object data
 ```
 
 instance of **Error** (**JError**):
 
 ```c#
-JSend.Error("Crashed"));						// No data
-JSend.Error("Crashed", "#0"));					// string data
-JSend.Error("Crashed", "#0", new { ... }));		// object data
+JSend.Error("Crashed"));                        // No data
+JSend.Error("Crashed", "#0"));                  // string data
+JSend.Error("Crashed", "#0", new { ... }));     // object data
 ```
 
 <br/>

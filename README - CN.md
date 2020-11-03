@@ -66,25 +66,25 @@ dotnet add package JSend
 例如，创建 **Success**（**JSuccess**）实例：
 
 ```c#
-JSend.Success();				// No data
-JSend.Success("OK");			// string data
-JSend.Success(new { ... });		// object data
+JSend.Success();                // No data
+JSend.Success("OK");            // string data
+JSend.Success(new { ... });     // object data
 ```
 
 **Fail**（**JFail**）实例：
 
 ```c#
-JSend.Fail();					// No data
-JSend.Fail("Oops");				// string data
-JSend.Success(new { ... });		// object data
+JSend.Fail();                   // No data
+JSend.Fail("Oops");             // string data
+JSend.Success(new { ... });     // object data
 ```
 
 **Error**（**JError**）实例：
 
 ```c#
-JSend.Error("Crashed"));						// No data
-JSend.Error("Crashed", "#0"));					// string data
-JSend.Error("Crashed", "#0", new { ... }));		// object data
+JSend.Error("Crashed"));                        // No data
+JSend.Error("Crashed", "#0"));                  // string data
+JSend.Error("Crashed", "#0", new { ... }));     // object data
 ```
 
 <br/>

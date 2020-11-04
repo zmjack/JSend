@@ -5,7 +5,7 @@
     /// </summary>
     public class JFail : JSend
     {
-        public override string Status => FAIL_STATUS;
+        public override string Status => "fail";
     }
 
     /// <summary>

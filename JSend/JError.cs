@@ -7,7 +7,7 @@ namespace Ajax
     /// </summary>
     public class JError : JSend
     {
-        public override string Status => ERROR_STATUS;
+        public override string Status => "error";
 
         /// <summary>
         /// Optional Key:

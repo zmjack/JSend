@@ -42,14 +42,6 @@ declare namespace Ajax {
         data?: TData;
     }
 }
-
-namespace Ajax {
-    export namespace JSend {
-        export const SUCCESS_STATUS: string = 'success';
-        export const FAIL_STATUS: string = 'fail';
-        export const ERROR_STATUS: string = 'error';
-    }
-}
 ", code);
         }
 

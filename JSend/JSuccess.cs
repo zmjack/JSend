@@ -4,7 +4,7 @@ namespace Ajax
 {
     public class JSuccess : JSend
     {
-        public override string Status => SUCCESS_STATUS;
+        public override string Status => "success";
     }
 
     /// <summary>

@@ -1,6 +1,6 @@
 # JSend
 
-**JSend** 是基于 JSON 格式简单干净的应用层通信标准。 
+**JSend** 是基于 **JSON** 格式简单干净的应用层通信标准。 
 
 文档查阅: https://github.com/omniti-labs/jsend
 

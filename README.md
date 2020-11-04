@@ -2,7 +2,7 @@
 
 # JSend
 
-**JSend** is a specification for a simple, no-frills, JSON based format for application-level communication.
+**JSend** is a specification for a simple, no-frills, **JSON** based format for application-level communication.
 
 Referring: https://github.com/omniti-labs/jsend
 

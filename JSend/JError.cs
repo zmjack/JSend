@@ -4,17 +4,16 @@ namespace Ajax
     /// <summary>
     /// There was a problem with the data submitted, or some pre-condition of the API call wasn't satisfied.
     /// </summary>
-    public class JError : IJSend
+    public class JError : JSend
     {
-        public string Status => JSend.ERROR_STATUS;
-        object IJSend.Data { get; set; }
+        public override string Status => ERROR_STATUS;
 
         /// <summary>
         /// Optional Key:
         ///     A generic container for any other information about the error,
         ///         i.e.the conditions that caused the error, stack traces, etc.
         /// </summary>
-        public object Data
+        public new object Data
         {
             get => (this as IJSend).Data;
             set => (this as IJSend).Data = value;
@@ -24,13 +23,21 @@ namespace Ajax
         /// Optional Key:
         ///     A numeric code corresponding to the error, if applicable.
         /// </summary>
-        public string Code { get; set; }
+        public string Code
+        {
+            get => (this as IJSend).Code;
+            set => (this as IJSend).Code = value;
+        }
 
         /// <summary>
         /// Required Key:
         ///     A meaningful, end-user-readable (or at the least log-worthy) message, explaining what went wrong.
         /// </summary>
-        public string Message { get; set; }
+        public string Message
+        {
+            get => (this as IJSend).Message;
+            set => (this as IJSend).Message = value;
+        }
     }
 
     public class JError<TData> : JError

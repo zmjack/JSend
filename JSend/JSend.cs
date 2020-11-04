@@ -17,81 +17,10 @@ namespace Ajax
         public static JFail<TData> Fail<TData>(TData data) => new JFail<TData> { Data = data };
         public static JError<TData> Error<TData>(string message, string code, TData data) => new JError<TData> { Data = data, Code = code, Message = message };
 
-        public string Status { get; set; }
-        public object Data { get; set; }
-
-        public string Code { get; set; }
-        public string Message { get; set; }
-
-        public static implicit operator JSend(JSuccess jsend)
-        {
-            return new JSend
-            {
-                Status = jsend.Status,
-                Data = jsend.Data,
-                Code = null,
-                Message = null,
-            };
-        }
-
-        public static implicit operator JSend(JFail jsend)
-        {
-            return new JSend
-            {
-                Status = jsend.Status,
-                Data = jsend.Data,
-                Code = null,
-                Message = null,
-            };
-        }
-
-        public static implicit operator JSend(JError jsend)
-        {
-            return new JSend
-            {
-                Status = jsend.Status,
-                Data = jsend.Data,
-                Code = jsend.Code,
-                Message = jsend.Message,
-            };
-        }
+        public virtual string Status { get; protected set; }
+        public virtual object Data { get; set; }
+        string IJSend.Code { get; set; }
+        string IJSend.Message { get; set; }
     }
 
-    public class JSend<TData> : JSend
-    {
-        public new TData Data { get; set; }
-
-        public static implicit operator JSend<TData>(JSuccess<TData> jsend)
-        {
-            return new JSend<TData>
-            {
-                Status = jsend.Status,
-                Data = jsend.Data,
-                Code = null,
-                Message = null,
-            };
-        }
-
-        public static implicit operator JSend<TData>(JFail<TData> jsend)
-        {
-            return new JSend<TData>
-            {
-                Status = jsend.Status,
-                Data = jsend.Data,
-                Code = null,
-                Message = null,
-            };
-        }
-
-        public static implicit operator JSend<TData>(JError<TData> jsend)
-        {
-            return new JSend<TData>
-            {
-                Status = jsend.Status,
-                Data = jsend.Data,
-                Code = jsend.Code,
-                Message = jsend.Message,
-            };
-        }
-    }
 }

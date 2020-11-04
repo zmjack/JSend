@@ -128,18 +128,38 @@ axios
 
 ```typescript
 declare namespace Ajax {
-    interface JSend<TData> {
+    interface JSend {
         status?: string;
+        data?: any;
+    }
+    interface JSuccess {
+        status?: string;
+        data?: any;
+    }
+    interface JFail {
+        status?: string;
+        data?: any;
+    }
+    interface JError {
+        status?: string;
+        data?: any;
         code?: string;
         message?: string;
-        data?: TData;
+    }
+}
+
+namespace Ajax {
+    export namespace JSend {
+        export const SUCCESS_STATUS: string = 'success';
+        export const FAIL_STATUS: string = 'fail';
+        export const ERROR_STATUS: string = 'error';
     }
 }
 ```
 
 这段代码是通过 [TypeSharp](https://github.com/zmjack/TypeSharp) 生成的。如果您还使用 [TypeSharp](https://github.com/zmjack/TypeSharp) 生成了其他代码，使用相同声明会减轻一些移植工作量。
 
-文件查看：https://github.com/zmjack/JSend/blob/master/JSend.Tests/JSendTests.cs
+文件查看：https://github.com/zmjack/JSend/blob/master/JSend.Tests/TypeSharpTests.cs
 
 <br/>
 

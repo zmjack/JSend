@@ -1,18 +1,16 @@
-﻿namespace Ajax
+﻿
+namespace Ajax
 {
-    public class JSuccess : IJSend
+    public class JSuccess : JSend
     {
-        public string Status => JSend.SUCCESS_STATUS;
-        string IJSend.Code { get; set; }
-        string IJSend.Message { get; set; }
-        object IJSend.Data { get; set; }
+        public override string Status => SUCCESS_STATUS;
 
         /// <summary>
         /// Required Key:
         ///     Acts as the wrapper for any data returned by the API call.
         ///     If the call returns no data, data should be set to null.
         /// </summary>
-        public object Data
+        public new object Data
         {
             get => (this as IJSend).Data;
             set => (this as IJSend).Data = value;
@@ -35,4 +33,5 @@
             set => base.Data = value;
         }
     }
+
 }

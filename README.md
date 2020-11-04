@@ -125,7 +125,7 @@ axios
         if (jsend.status == 'success') { ... }
     	else if (jsend.status == 'fail') { ... }
         else { ... }
-	});
+    });
 ```
 
 <br/>

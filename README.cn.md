@@ -153,14 +153,6 @@ declare namespace Ajax {
         data?: TData;
     }
 }
-
-namespace Ajax {
-    export namespace JSend {
-        export const SUCCESS_STATUS: string = 'success';
-        export const FAIL_STATUS: string = 'fail';
-        export const ERROR_STATUS: string = 'error';
-    }
-}
 ```
 
 这段代码是通过 [TypeSharp](https://github.com/zmjack/TypeSharp) 生成的。

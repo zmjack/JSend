@@ -6,6 +6,10 @@
 
 <br/>
 
+- 语言：[English](https://github.com/zmjack/JSend/blob/master/README.md)  |  [中文](https://github.com/zmjack/JSend/blob/master/README.cn.md)
+
+<br/>
+
 ## 为什么使用 JSend？
 
 现在有很多 **WEB** 服务都提供 **JSON** 数据，但他们各有自己特殊的响应格式。那么，开发人员使用 **JavaScript** 编写前端，就需要不断地重新设计数据交互的轮子。

@@ -1,8 +1,14 @@
+
+
 # JSend
 
 **JSend** is a specification for a simple, no-frills, JSON based format for application-level communication.
 
 Referring: https://github.com/omniti-labs/jsend
+
+<br/>
+
+- Language：[English](https://github.com/zmjack/JSend/blob/master/README.md)  |  [中文](https://github.com/zmjack/JSend/blob/master/README.cn.md)
 
 <br/>
 

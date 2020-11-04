@@ -1,4 +1,5 @@
-﻿
+﻿using System.Text.Json.Serialization;
+
 namespace Ajax
 {
     /// <summary>
@@ -7,17 +8,6 @@ namespace Ajax
     public class JError : JSend
     {
         public override string Status => ERROR_STATUS;
-
-        /// <summary>
-        /// Optional Key:
-        ///     A generic container for any other information about the error,
-        ///         i.e.the conditions that caused the error, stack traces, etc.
-        /// </summary>
-        public new object Data
-        {
-            get => (this as IJSend).Data;
-            set => (this as IJSend).Data = value;
-        }
 
         /// <summary>
         /// Optional Key:

@@ -137,16 +137,16 @@ declare namespace Ajax {
         data?: any;
     }
     interface JSuccess {
-        status?: string;
         data?: any;
+        status?: string;
     }
     interface JFail {
-        status?: string;
         data?: any;
+        status?: string;
     }
     interface JError {
-        status?: string;
         data?: any;
+        status?: string;
         code?: string;
         message?: string;
     }

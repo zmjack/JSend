@@ -1,20 +1,10 @@
-﻿
+﻿using System.Text.Json.Serialization;
+
 namespace Ajax
 {
     public class JSuccess : JSend
     {
         public override string Status => SUCCESS_STATUS;
-
-        /// <summary>
-        /// Required Key:
-        ///     Acts as the wrapper for any data returned by the API call.
-        ///     If the call returns no data, data should be set to null.
-        /// </summary>
-        public new object Data
-        {
-            get => (this as IJSend).Data;
-            set => (this as IJSend).Data = value;
-        }
     }
 
     /// <summary>

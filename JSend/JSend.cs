@@ -1,8 +1,10 @@
-﻿
+﻿using System.Text.Json.Serialization;
+
 namespace Ajax
 {
     // Refer: http://labs.omniti.com/labs/jsend
-    public class JSend : IJSend
+    [JsonConverter(typeof(JSendConverter))]
+    public abstract class JSend : IJSend
     {
         public const string SUCCESS_STATUS = "success";
         public const string FAIL_STATUS = "fail";
@@ -17,8 +19,12 @@ namespace Ajax
         public static JFail<TData> Fail<TData>(TData data) => new JFail<TData> { Data = data };
         public static JError<TData> Error<TData>(string message, string code, TData data) => new JError<TData> { Data = data, Code = code, Message = message };
 
+        [JsonIgnore]
         public virtual string Status { get; protected set; }
+
+        [JsonIgnore]
         public virtual object Data { get; set; }
+
         string IJSend.Code { get; set; }
         string IJSend.Message { get; set; }
     }

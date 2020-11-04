@@ -82,7 +82,7 @@ instance of **Fail** (**JFail**):
 ```c#
 JSend.Fail();                   // No data
 JSend.Fail("Oops");             // string data
-JSend.Success(new { ... });     // object data
+JSend.Fail(new { ... });        // object data
 ```
 
 instance of **Error** (**JError**):

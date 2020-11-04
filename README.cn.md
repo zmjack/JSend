@@ -80,7 +80,7 @@ JSend.Success(new { ... });     // object data
 ```c#
 JSend.Fail();                   // No data
 JSend.Fail("Oops");             // string data
-JSend.Success(new { ... });     // object data
+JSend.Fail(new { ... });        // object data
 ```
 
 **Error**（**JError**）实例：

@@ -159,7 +159,7 @@ declare namespace Ajax {
 
 如果您还使用 [TypeSharp](https://github.com/zmjack/TypeSharp) 生成了其他代码，使用相同声明会减轻移植工作量。
 
-文件查看：https://github.com/zmjack/JSend/blob/master/JSend.Tests/TypeSharpTests.cs
+文件查看：[TypeSharpTests.cs](https://github.com/zmjack/JSend/blob/master/JSend.Tests/TypeSharpTests.cs)
 
 <br/>
 

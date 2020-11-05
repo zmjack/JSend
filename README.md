@@ -97,9 +97,9 @@ JSend.Error("Crashed", "#0", new { ... }));     // object data
 
 3. Return the common type **JSend**:
 
-In general, we don't need to use the common type **JSend** directly. But we might convert the other three types to **JSend**.
+In general, we don't need to use the common type **JSend** directly, but need to convert the derived class to **JSend**.
 
-For example, Web API need return a **JSend** of **JSuccess**, **JFail** or **JError**:
+For example, a **Web API** need return a **JSend** of **JSuccess**, **JFail** or **JError**:
 
 ```c#
 public JSend PostNumber(int number)

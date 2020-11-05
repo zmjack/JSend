@@ -95,9 +95,9 @@ JSend.Error("Crashed", "#0", new { ... }));     // object data
 
 3. 返回通用类型 **JSend**:
 
-通常我们不需要直接使用 **JSend** 类型，而是从其他三种类型转换到 **JSend**。
+通常我们不需要直接使用 **JSend** 类型，而是从其派生类转换到 **JSend**。
 
-例如，Web API 需要返回 **JSend** 子类型中的一种，**JSuccess**、**JFail** 或 **JError**：
+例如，设计一个 **Web API** 需要返回 **JSend** 派生类的其中一种，**JSuccess**、**JFail** 或 **JError**：
 
 ```c#
 public JSend PostNumber(int number)

@@ -1,2 +1,2 @@
-nuget push "JSend/bin/Release/JSend.0.9.10.nupkg" -source nuget.org
+nuget push "JSend/bin/Release/JSend.1.0.0.nupkg" -source nuget.org
 pause

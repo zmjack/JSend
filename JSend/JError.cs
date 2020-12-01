@@ -1,32 +1,30 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Ajax
+﻿namespace Ajax
 {
     /// <summary>
     /// There was a problem with the data submitted, or some pre-condition of the API call wasn't satisfied.
     /// </summary>
     public class JError : JSend
     {
-        public override string Status => "error";
+        public override string status => "error";
 
         /// <summary>
         /// Optional Key:
         ///     A numeric code corresponding to the error, if applicable.
         /// </summary>
-        public string Code
+        public string code
         {
-            get => (this as IJSend).Code;
-            set => (this as IJSend).Code = value;
+            get => (this as IJSend).code;
+            set => (this as IJSend).code = value;
         }
 
         /// <summary>
         /// Required Key:
         ///     A meaningful, end-user-readable (or at the least log-worthy) message, explaining what went wrong.
         /// </summary>
-        public string Message
+        public string message
         {
-            get => (this as IJSend).Message;
-            set => (this as IJSend).Message = value;
+            get => (this as IJSend).message;
+            set => (this as IJSend).message = value;
         }
     }
 
@@ -37,10 +35,10 @@ namespace Ajax
         ///     A generic container for any other information about the error,
         ///         i.e.the conditions that caused the error, stack traces, etc.
         /// </summary>
-        public new TData Data
+        public new TData data
         {
-            get => base.Data is null ? default : (TData)base.Data;
-            set => base.Data = value;
+            get => base.data is null ? default : (TData)base.data;
+            set => base.data = value;
         }
     }
 }

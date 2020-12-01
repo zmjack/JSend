@@ -8,21 +8,21 @@ namespace Ajax
     {
         public static JSuccess Success() => new JSuccess();
         public static JFail Fail() => new JFail();
-        public static JError Error(string message) => new JError { Message = message };
-        public static JError Error(string message, string code) => new JError { Code = code, Message = message };
+        public static JError Error(string message) => new JError { message = message };
+        public static JError Error(string message, string code) => new JError { code = code, message = message };
 
-        public static JSuccess<TData> Success<TData>(TData data) => new JSuccess<TData> { Data = data };
-        public static JFail<TData> Fail<TData>(TData data) => new JFail<TData> { Data = data };
-        public static JError<TData> Error<TData>(string message, string code, TData data) => new JError<TData> { Data = data, Code = code, Message = message };
-
-        [JsonIgnore]
-        public virtual string Status { get; protected set; }
+        public static JSuccess<TData> Success<TData>(TData data) => new JSuccess<TData> { data = data };
+        public static JFail<TData> Fail<TData>(TData data) => new JFail<TData> { data = data };
+        public static JError<TData> Error<TData>(string message, string code, TData data) => new JError<TData> { data = data, code = code, message = message };
 
         [JsonIgnore]
-        public virtual object Data { get; set; }
+        public virtual string status { get; protected set; }
 
-        string IJSend.Code { get; set; }
-        string IJSend.Message { get; set; }
+        [JsonIgnore]
+        public virtual object data { get; set; }
+
+        string IJSend.code { get; set; }
+        string IJSend.message { get; set; }
     }
 
 }

@@ -1,8 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using NStandard;
-using System.Collections.Generic;
-using System.Reflection;
 using System.Text.Json;
 using Xunit;
 
@@ -14,20 +10,20 @@ namespace Ajax.Tests.Utils
         {
             var json = JsonConvert.SerializeObject(jsend);
             var deserialized = JsonConvert.DeserializeObject<DeserializedJSend>(json);
-            Assert.Equal(jsend.Status, deserialized.Status);
-            Assert.Equal(Any((jsend as IJSend).Data), Any(deserialized.Data));
-            Assert.Equal((jsend as IJSend).Code, deserialized.Code);
-            Assert.Equal((jsend as IJSend).Message, deserialized.Message);
+            Assert.Equal(jsend.status, deserialized.status);
+            Assert.Equal(Any((jsend as IJSend).data), Any(deserialized.data));
+            Assert.Equal((jsend as IJSend).code, deserialized.code);
+            Assert.Equal((jsend as IJSend).message, deserialized.message);
         }
 
         internal static void UseSystemJson(JSend jsend)
         {
             var json = System.Text.Json.JsonSerializer.Serialize(jsend);
             var deserialized = System.Text.Json.JsonSerializer.Deserialize<DeserializedJSend>(json);
-            Assert.Equal(jsend.Status, deserialized.Status);
-            Assert.Equal(Any((jsend as IJSend).Data), Any(deserialized.Data));
-            Assert.Equal((jsend as IJSend).Code, deserialized.Code);
-            Assert.Equal((jsend as IJSend).Message, deserialized.Message);
+            Assert.Equal(jsend.status, deserialized.status);
+            Assert.Equal(Any((jsend as IJSend).data), Any(deserialized.data));
+            Assert.Equal((jsend as IJSend).code, deserialized.code);
+            Assert.Equal((jsend as IJSend).message, deserialized.message);
         }
 
         private static object Any(object obj)

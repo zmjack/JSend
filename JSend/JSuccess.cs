@@ -1,10 +1,8 @@
-﻿using System.Text.Json.Serialization;
-
-namespace Ajax
+﻿namespace Ajax
 {
     public class JSuccess : JSend
     {
-        public override string Status => "success";
+        public override string status => "success";
     }
 
     /// <summary>
@@ -17,10 +15,10 @@ namespace Ajax
         ///     Acts as the wrapper for any data returned by the API call.
         ///     If the call returns no data, data should be set to null.
         /// </summary>
-        public new TData Data
+        public new TData data
         {
-            get => base.Data is null ? default : (TData)base.Data;
-            set => base.Data = value;
+            get => base.data is null ? default : (TData)base.data;
+            set => base.data = value;
         }
     }
 

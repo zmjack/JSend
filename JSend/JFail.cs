@@ -5,7 +5,7 @@
     /// </summary>
     public class JFail : JSend
     {
-        public override string Status => "fail";
+        public override string status => "fail";
     }
 
     /// <summary>
@@ -19,10 +19,10 @@
         ///     If the reasons for failure correspond to POST values,
         ///     the response object's keys SHOULD correspond to those POST values.
         /// </summary>
-        public new TData Data
+        public new TData data
         {
-            get => base.Data is null ? default : (TData)base.Data;
-            set => base.Data = value;
+            get => base.data is null ? default : (TData)base.data;
+            set => base.data = value;
         }
     }
 }

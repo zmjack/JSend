@@ -2,28 +2,28 @@
 {
     public class DeserializedJSend : JSend
     {
-        public new string Status
+        public new string status
         {
-            get => base.Status;
-            set => base.Status = value;
+            get => base.status;
+            set => base.status = value;
         }
 
-        public object Data
+        public new object data
         {
-            get => (this as IJSend).Data;
-            set => (this as IJSend).Data = value;
+            get => (this as IJSend).data;
+            set => (this as IJSend).data = value;
         }
 
-        public string Code
+        public string code
         {
-            get => (this as IJSend).Code;
-            set => (this as IJSend).Code = value;
+            get => (this as IJSend).code;
+            set => (this as IJSend).code = value;
         }
 
-        public string Message
+        public string message
         {
-            get => (this as IJSend).Message;
-            set => (this as IJSend).Message = value;
+            get => (this as IJSend).message;
+            set => (this as IJSend).message = value;
         }
     }
 }

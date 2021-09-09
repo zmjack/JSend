@@ -23,6 +23,26 @@ namespace Ajax
 
         string IJSend.code { get; set; }
         string IJSend.message { get; set; }
+
+        public bool IsSuccess() => status == "success";
+        public bool IsFail() => status == "fail";
+        public bool IsError() => status == "error";
+    }
+
+    [JsonConverter(typeof(JSendConverter))]
+    public abstract class JSend<TData> : JSend
+    {
+        /// <summary>
+        /// Required Key:
+        ///     Provides the wrapper for the details of why the request failed.
+        ///     If the reasons for failure correspond to POST values,
+        ///     the response object's keys SHOULD correspond to those POST values.
+        /// </summary>
+        public new TData data
+        {
+            get => base.data is null ? default : (TData)base.data;
+            set => base.data = value;
+        }
     }
 
 }

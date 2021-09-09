@@ -6,7 +6,7 @@ namespace Ajax.Tests.Utils
 {
     internal static class TestUtil
     {
-        internal static void UseNewtonsoftJson(JSend jsend)
+        internal static void UseNewtonsoftJson<T>(T jsend) where T : IJSend
         {
             var json = JsonConvert.SerializeObject(jsend);
             var deserialized = JsonConvert.DeserializeObject<DeserializedJSend>(json);
@@ -16,7 +16,7 @@ namespace Ajax.Tests.Utils
             Assert.Equal((jsend as IJSend).message, deserialized.message);
         }
 
-        internal static void UseSystemJson(JSend jsend)
+        internal static void UseSystemJson<T>(T jsend) where T : IJSend
         {
             var json = System.Text.Json.JsonSerializer.Serialize(jsend);
             var deserialized = System.Text.Json.JsonSerializer.Deserialize<DeserializedJSend>(json);

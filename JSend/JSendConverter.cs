@@ -4,14 +4,14 @@ using System.Text.Json.Serialization;
 
 namespace Ajax
 {
-    public class JSendConverter : JsonConverter<JSend>
+    public class JSendConverter : JsonConverter<JSend<object>>
     {
-        public override JSend Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override JSend<object> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return JsonSerializer.Deserialize(ref reader, typeToConvert, options) as JSend;
+            return JsonSerializer.Deserialize(ref reader, typeToConvert, options) as JSend<object>;
         }
 
-        public override void Write(Utf8JsonWriter writer, JSend value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, JSend<object> value, JsonSerializerOptions options)
         {
             var type = value.GetType();
             JsonSerializer.Serialize(writer, value, type, options);

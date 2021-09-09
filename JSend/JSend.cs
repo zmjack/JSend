@@ -1,48 +1,96 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Ajax
 {
-    // Refer: http://labs.omniti.com/labs/jsend
-    [JsonConverter(typeof(JSendConverter))]
-    public abstract class JSend : IJSend
+    //// Refer: http://labs.omniti.com/labs/jsend
+    public class JSend
     {
-        public static JSuccess Success() => new JSuccess();
-        public static JFail Fail() => new JFail();
-        public static JError Error(string message) => new JError { message = message };
-        public static JError Error(string message, string code) => new JError { code = code, message = message };
+        internal JSendModel _model;
+        public JSend() => _model = new();
+        internal JSend(JSendModel model) => _model = model;
 
-        public static JSuccess<TData> Success<TData>(TData data) => new JSuccess<TData> { data = data };
-        public static JFail<TData> Fail<TData>(TData data) => new JFail<TData> { data = data };
-        public static JError<TData> Error<TData>(string message, string code, TData data) => new JError<TData> { data = data, code = code, message = message };
+        public string status
+        {
+            get => _model.Status;
+            set => _model.Status = value;
+        }
 
-        [JsonIgnore]
-        public virtual string status { get; protected set; }
+        public object data
+        {
+            get => _model.Data;
+            set => _model.Data = value;
+        }
 
-        [JsonIgnore]
-        public virtual object data { get; set; }
+        public string message
+        {
+            get => _model.Message;
+            set => _model.Message = value;
+        }
 
-        string IJSend.code { get; set; }
-        string IJSend.message { get; set; }
+        public string code
+        {
+            get => _model.Code;
+            set => _model.Code = value;
+        }
+
+        public const string Status_Success = "success";
+        public const string Status_Fail = "fail";
+        public const string Status_Error = "error";
+
+        public static JSend Success() => new() { status = Status_Success };
+        public static JSend<TData> Success<TData>(TData data) => new() { status = Status_Success, data = data };
+        public static JSend Fail() => new() { status = Status_Fail };
+        public static JSend Fail(IDictionary<string, string> data) => new() { status = Status_Fail, data = data };
+        public static JSend Error(string message) => new() { status = Status_Error, message = message };
+        public static JSend Error(string message, string code) => new() { status = Status_Error, message = message, code = code };
+        public static JSend Error(string message, string code, IDictionary<string, string> data) => new() { status = Status_Error, message = message, code = code, data = data };
 
         public bool IsSuccess() => status == "success";
         public bool IsFail() => status == "fail";
         public bool IsError() => status == "error";
     }
 
-    [JsonConverter(typeof(JSendConverter))]
-    public abstract class JSend<TData> : JSend
+    public class JSend<TData>
     {
-        /// <summary>
-        /// Required Key:
-        ///     Provides the wrapper for the details of why the request failed.
-        ///     If the reasons for failure correspond to POST values,
-        ///     the response object's keys SHOULD correspond to those POST values.
-        /// </summary>
-        public new TData data
+        internal JSendModel _model;
+        public JSend() => _model = new();
+        internal JSend(JSendModel model) => _model = model;
+
+        public string status
         {
-            get => base.data is null ? default : (TData)base.data;
-            set => base.data = value;
+            get => _model.Status;
+            set => _model.Status = value;
         }
+
+        public object data
+        {
+            get => _model.Data;
+            set => _model.Data = value;
+        }
+
+        public TData GetData() => status == JSend.Status_Success ? (TData)_model.Data : default;
+        public IDictionary<string, string> GetExceptionData()
+        {
+            if (status == JSend.Status_Fail || status == JSend.Status_Error)
+                return _model.Data as IDictionary<string, string>;
+            else return default;
+        }
+
+        public string message
+        {
+            get => _model.Message;
+            set => _model.Message = value;
+        }
+
+        public string code
+        {
+            get => _model.Code;
+            set => _model.Code = value;
+        }
+
+        public static implicit operator JSend<TData>(JSend @this) => new(@this._model);
+        public static implicit operator JSend(JSend<TData> @this) => new(@this._model);
     }
 
 }

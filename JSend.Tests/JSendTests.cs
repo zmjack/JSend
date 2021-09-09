@@ -1,4 +1,5 @@
 using Ajax.Tests.Utils;
+using System.Collections.Generic;
 using Xunit;
 
 namespace Ajax.Tests
@@ -11,10 +12,9 @@ namespace Ajax.Tests
             TestUtil.UseNewtonsoftJson(JSend.Success());
             TestUtil.UseNewtonsoftJson(JSend.Success(new { ABC = "abc" }));
             TestUtil.UseNewtonsoftJson(JSend.Fail());
-            TestUtil.UseNewtonsoftJson(JSend.Fail(new { ABC = "abc" }));
+            TestUtil.UseNewtonsoftJson(JSend.Fail(new Dictionary<string, string> { ["ABC"] = "abc" }));
             TestUtil.UseNewtonsoftJson(JSend.Error("error message"));
-            TestUtil.UseNewtonsoftJson(JSend.Error("error message", "#0"));
-            TestUtil.UseNewtonsoftJson(JSend.Error("error message", "#0", new { ABC = "abc" }));
+            TestUtil.UseNewtonsoftJson(JSend.Error("error message", "#0", new Dictionary<string, string> { ["ABC"] = "abc" }));
         }
 
         [Fact]
@@ -23,10 +23,10 @@ namespace Ajax.Tests
             TestUtil.UseSystemJson(JSend.Success());
             TestUtil.UseSystemJson(JSend.Success(new { ABC = "abc" }));
             TestUtil.UseSystemJson(JSend.Fail());
-            TestUtil.UseSystemJson(JSend.Fail(new { ABC = "abc" }));
+            TestUtil.UseSystemJson(JSend.Fail(new Dictionary<string, string> { ["ABC"] = "abc" }));
             TestUtil.UseSystemJson(JSend.Error("error message"));
             TestUtil.UseSystemJson(JSend.Error("error message", "#0"));
-            TestUtil.UseSystemJson(JSend.Error("error message", "#0", new { ABC = "abc" }));
+            TestUtil.UseSystemJson(JSend.Error("error message", "#0", new Dictionary<string, string> { ["ABC"] = "abc" }));
         }
 
         [Fact]

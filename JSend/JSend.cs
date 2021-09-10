@@ -47,10 +47,10 @@ namespace Ajax
         public static JSend Success() => new() { status = Status_Success };
         public static JSend<TData> Success<TData>(TData data) => new() { status = Status_Success, data = data };
         public static JSend Fail() => new() { status = Status_Fail };
-        public static JSend Fail(object data) => new() { status = Status_Fail, exData = data };
+        public static JSend Fail(object exData) => new() { status = Status_Fail, exData = exData };
         public static JSend Error(string message) => new() { status = Status_Error, message = message };
         public static JSend Error(string message, string code) => new() { status = Status_Error, message = message, code = code };
-        public static JSend Error(string message, string code, object data) => new() { status = Status_Error, message = message, code = code, exData = data };
+        public static JSend Error(string message, string code, object exData) => new() { status = Status_Error, message = message, code = code, exData = exData };
 
         public bool IsSuccess() => status == "success";
         public bool IsFail() => status == "fail";

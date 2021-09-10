@@ -19,7 +19,8 @@ namespace Ajax.Tests
 declare namespace Ajax {
     interface JSend<TData> {
         status?: string;
-        data?: any;
+        data?: TData;
+        exData?: any;
         message?: string;
         code?: string;
     }

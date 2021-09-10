@@ -22,6 +22,12 @@ namespace Ajax
             set => _model.Data = value;
         }
 
+        public object exData
+        {
+            get => _model.Data;
+            set => _model.Data = value;
+        }
+
         public string message
         {
             get => _model.Message;
@@ -41,10 +47,10 @@ namespace Ajax
         public static JSend Success() => new() { status = Status_Success };
         public static JSend<TData> Success<TData>(TData data) => new() { status = Status_Success, data = data };
         public static JSend Fail() => new() { status = Status_Fail };
-        public static JSend Fail(IDictionary<string, string> data) => new() { status = Status_Fail, data = data };
+        public static JSend Fail(object data) => new() { status = Status_Fail, exData = data };
         public static JSend Error(string message) => new() { status = Status_Error, message = message };
         public static JSend Error(string message, string code) => new() { status = Status_Error, message = message, code = code };
-        public static JSend Error(string message, string code, IDictionary<string, string> data) => new() { status = Status_Error, message = message, code = code, data = data };
+        public static JSend Error(string message, string code, object data) => new() { status = Status_Error, message = message, code = code, exData = data };
 
         public bool IsSuccess() => status == "success";
         public bool IsFail() => status == "fail";
@@ -63,18 +69,21 @@ namespace Ajax
             set => _model.Status = value;
         }
 
-        public object data
+        public TData data
         {
-            get => _model.Data;
+            get => (TData)_model.Data;
             set => _model.Data = value;
         }
 
-        public TData GetData() => status == JSend.Status_Success ? (TData)_model.Data : default;
-        public IDictionary<string, string> GetExceptionData()
+        public object exData
         {
-            if (status == JSend.Status_Fail || status == JSend.Status_Error)
-                return _model.Data as IDictionary<string, string>;
-            else return default;
+            get
+            {
+                if (status == JSend.Status_Fail || status == JSend.Status_Error)
+                    return _model.Data as IDictionary<string, string>;
+                else return default;
+            }
+            set => _model.Data = value;
         }
 
         public string message

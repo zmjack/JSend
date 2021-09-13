@@ -6,6 +6,5 @@
         public string Message { get; set; }
         public string Code { get; set; }
         public object Data { get; set; }
-        public object ExData { get; set; }
     }
 }

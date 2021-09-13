@@ -3,12 +3,21 @@ using System.Collections.Generic;
 
 namespace Ajax
 {
-    //// Refer: http://labs.omniti.com/labs/jsend
+    // Refer: http://labs.omniti.com/labs/jsend
+    // Diff : Add ExData for type checking
     public class JSend
     {
         internal JSendModel _model;
         public JSend() => _model = new();
         internal JSend(JSendModel model) => _model = model;
+
+        public const string Status_Success = "success";
+        public const string Status_Fail = "fail";
+        public const string Status_Error = "error";
+
+        public bool IsSuccess() => status == Status_Success;
+        public bool IsFail() => status == Status_Fail;
+        public bool IsError() => status == Status_Error;
 
         public string status
         {
@@ -18,14 +27,23 @@ namespace Ajax
 
         public object data
         {
-            get => _model.Data;
+            get
+            {
+                if (status == Status_Success) return _model.Data;
+                else return default;
+            }
             set => _model.Data = value;
         }
 
         public object exData
         {
-            get => _model.Data;
-            set => _model.Data = value;
+            get
+            {
+                if (status == Status_Fail || status == Status_Error)
+                    return _model.ExData;
+                else return default;
+            }
+            set => _model.ExData = value;
         }
 
         public string message
@@ -40,10 +58,6 @@ namespace Ajax
             set => _model.Code = value;
         }
 
-        public const string Status_Success = "success";
-        public const string Status_Fail = "fail";
-        public const string Status_Error = "error";
-
         public static JSend Success() => new() { status = Status_Success };
         public static JSend<TData> Success<TData>(TData data) => new() { status = Status_Success, data = data };
         public static JSend Fail() => new() { status = Status_Fail };
@@ -51,10 +65,6 @@ namespace Ajax
         public static JSend Error(string message) => new() { status = Status_Error, message = message };
         public static JSend Error(string message, string code) => new() { status = Status_Error, message = message, code = code };
         public static JSend Error(string message, string code, object exData) => new() { status = Status_Error, message = message, code = code, exData = exData };
-
-        public bool IsSuccess() => status == "success";
-        public bool IsFail() => status == "fail";
-        public bool IsError() => status == "error";
     }
 
     public class JSend<TData>
@@ -62,6 +72,10 @@ namespace Ajax
         internal JSendModel _model;
         public JSend() => _model = new();
         internal JSend(JSendModel model) => _model = model;
+
+        public bool IsSuccess() => status == JSend.Status_Success;
+        public bool IsFail() => status == JSend.Status_Fail;
+        public bool IsError() => status == JSend.Status_Error;
 
         public string status
         {
@@ -71,7 +85,12 @@ namespace Ajax
 
         public TData data
         {
-            get => (TData)_model.Data;
+            get
+            {
+                if (status == JSend.Status_Success)
+                    return (TData)_model.Data;
+                else return default;
+            }
             set => _model.Data = value;
         }
 
@@ -80,10 +99,10 @@ namespace Ajax
             get
             {
                 if (status == JSend.Status_Fail || status == JSend.Status_Error)
-                    return _model.Data as IDictionary<string, string>;
+                    return _model.ExData;
                 else return default;
             }
-            set => _model.Data = value;
+            set => _model.ExData = value;
         }
 
         public string message

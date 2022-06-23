@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="NStandard" Version="0.8.21" />
     <PackageReference Include="System.Text.Json" Version="4.7.2" />
     <PackageReference Include="TypeSharp" Version="1.3.12" />
